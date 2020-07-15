@@ -3,10 +3,10 @@ import 'database_model.dart';
 
 abstract class DatabaseProvider<T extends DatabaseModel> {
   Future open();
-  Future<T> getTodo(int id);
+  Future<T> getItem(String id);
   Future<List<T>> getList();
-  Future<bool> updateItem(int id, T model);
-  Future<bool> removeItem(int id);
+  Future<bool> updateItem(String id, T model);
+  Future<bool> removeItem(String id);
   Future<bool> insertItem(T model);
 
   Database database;
