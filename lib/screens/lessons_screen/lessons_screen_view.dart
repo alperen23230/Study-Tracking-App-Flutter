@@ -11,8 +11,29 @@ class LessonsScreenView extends LessonsScreenViewModel {
         ? ListView.builder(
             itemCount: lessonsList.length,
             itemBuilder: (context, index) {
-              return LessonItem(
-                lesson: lessonsList[index],
+              return Dismissible(
+                key: Key(lessonsList[index].id),
+                background: Container(
+                  alignment: AlignmentDirectional.centerEnd,
+                  // padding: EdgeInsets.symmetric(horizontal: 20),
+                  color: Colors.red,
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+                onDismissed: (direction) {
+                  deleteLessonFromDB(lessonsList[index].id).then((isSuccess) {
+                    if (isSuccess) {
+                      setState(() {
+                        lessonsList.remove(lessonsList[index]);
+                      });
+                    }
+                  });
+                },
+                child: LessonItem(
+                  lesson: lessonsList[index],
+                ),
               );
             },
           )

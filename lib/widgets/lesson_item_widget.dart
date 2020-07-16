@@ -16,7 +16,6 @@ class LessonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     final lessonColor = Color.fromRGBO(lesson.lessonColorRed,
         lesson.lessonColorGreen, lesson.lessonColorBlue, 1);
     return InkWell(
@@ -24,7 +23,6 @@ class LessonItem extends StatelessWidget {
       splashColor: Theme.of(context).accentColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        width: screenSize.width * 0.8,
         height: 75,
         child: Card(
           elevation: 6,

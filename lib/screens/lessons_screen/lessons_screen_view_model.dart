@@ -26,4 +26,12 @@ abstract class LessonsScreenViewModel extends State<LessonsScreen> {
       });
     });
   }
+
+  Future<bool> deleteLessonFromDB(String id) async {
+    var isSuccessful = false;
+    await lessonsDB.removeItem(id).then((isSuccess) {
+      isSuccessful = isSuccess;
+    });
+    return isSuccessful;
+  }
 }

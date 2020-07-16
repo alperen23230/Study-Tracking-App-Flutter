@@ -7,7 +7,7 @@ class StudyInput extends DatabaseModel<StudyInput> {
   int questionNumber;
   int trueNumber;
   int falseNumber;
-  int netNumber;
+  double netNumber;
   int date;
 
   StudyInput(
