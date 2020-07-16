@@ -1,5 +1,6 @@
 import 'package:StudyTrackingApp/screens/add_lesson_screen/add_lesson_screen.dart';
 import 'package:StudyTrackingApp/screens/splash_screen/splash_screen.dart';
+import 'package:StudyTrackingApp/screens/subjects_screen/subjects_screen.dart';
 import 'package:StudyTrackingApp/screens/tabs_screen/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'core/helper/custom_color.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => SplashScreen(),
         '/tabs-screen': (ctx) => TabsScreen(),
-        '/add-lesson': (ctx) => AddLessonScreen()
+        '/add-lesson': (ctx) => AddLessonScreen(),
+        '/subjects': (ctx) => SubjectsScreen(),
       },
     );
   }

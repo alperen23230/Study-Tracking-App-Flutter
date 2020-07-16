@@ -9,6 +9,11 @@ class AddLessonScreenView extends AddLessonViewModel {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/tabs-screen', (route) => false),
+        ),
         title: Text("Ders Ekle"),
       ),
       body: Center(

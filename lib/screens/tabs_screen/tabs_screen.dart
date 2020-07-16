@@ -1,5 +1,4 @@
 import 'package:StudyTrackingApp/screens/lessons_screen/lessons_screen.dart';
-import 'package:StudyTrackingApp/screens/lessons_screen/lessons_screen_view.dart';
 import 'package:StudyTrackingApp/screens/statistics_screen/statistics_screen.dart';
 import 'package:StudyTrackingApp/screens/study_input_screen/study_input_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,44 +13,21 @@ class _TabsScreenState extends State<TabsScreen> {
     {
       'page': StudyInputScreen(),
       'title': 'Öğrenci Çalışmaları',
-      'appBarAction': studyInputScreenAppBarAction
     },
     {
       'page': LessonsScreen(),
       'title': 'Dersler',
-      'appBarAction': lessonsScreenAppBarAction,
     },
     {
       'page': StatisticsScreen(),
       'title': 'İstatistikler',
-      'appBarAction': statisticsScreenAppBarAction,
     }
   ];
-  int _selectedPageIndex = 0;
+  int _selectedPageIndex = 1;
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
     });
-  }
-
-  static Widget lessonsScreenAppBarAction(BuildContext ctx) {
-    return IconButton(
-      icon: Icon(Icons.add),
-      onPressed: () {},
-    );
-  }
-
-  static Widget get studyInputScreenAppBarAction {
-    return IconButton(
-      icon: Icon(Icons.add),
-      onPressed: () {
-        print("add input");
-      },
-    );
-  }
-
-  static Widget get statisticsScreenAppBarAction {
-    return Container();
   }
 
   @override
