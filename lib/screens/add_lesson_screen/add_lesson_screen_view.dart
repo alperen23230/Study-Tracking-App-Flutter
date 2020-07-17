@@ -24,7 +24,6 @@ class AddLessonScreenView extends AddLessonViewModel {
             elevation: 6,
             child: Container(
               padding: EdgeInsets.all(20),
-              margin: EdgeInsets.symmetric(vertical: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

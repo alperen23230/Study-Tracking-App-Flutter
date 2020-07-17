@@ -14,7 +14,9 @@ abstract class LessonsScreenViewModel extends State<LessonsScreen> {
     print("state initialize");
     lessonsDB = LessonDatabaseProvider();
     lessonsDB.open().then((_) {
-      getLessons();
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        getLessons();
+      });
     });
   }
 

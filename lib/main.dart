@@ -1,4 +1,5 @@
 import 'package:StudyTrackingApp/screens/add_lesson_screen/add_lesson_screen.dart';
+import 'package:StudyTrackingApp/screens/add_study_input_screen/add_study_input_screen.dart';
 import 'package:StudyTrackingApp/screens/splash_screen/splash_screen.dart';
 import 'package:StudyTrackingApp/screens/subjects_screen/subjects_screen.dart';
 import 'package:StudyTrackingApp/screens/tabs_screen/tabs_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/tabs-screen': (ctx) => TabsScreen(),
         '/add-lesson': (ctx) => AddLessonScreen(),
         '/subjects': (ctx) => SubjectsScreen(),
+        '/add-study-input': (ctx) => AddStudyInputScreen(),
       },
     );
   }
