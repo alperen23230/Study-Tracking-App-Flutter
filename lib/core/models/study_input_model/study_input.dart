@@ -9,6 +9,8 @@ class StudyInput extends DatabaseModel<StudyInput> {
   int falseNumber;
   double netNumber;
   int date;
+  String lessonName;
+  String subjectName;
 
   StudyInput(
       {this.id,
@@ -18,7 +20,9 @@ class StudyInput extends DatabaseModel<StudyInput> {
       this.trueNumber,
       this.falseNumber,
       this.netNumber,
-      this.date});
+      this.date,
+      this.lessonName,
+      this.subjectName});
 
   StudyInput.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,6 +33,8 @@ class StudyInput extends DatabaseModel<StudyInput> {
     falseNumber = json['falseNumber'];
     netNumber = json['netNumber'];
     date = json['date'];
+    lessonName = json['lessonName'];
+    subjectName = json['subjectName'];
   }
 
   @override
@@ -47,6 +53,8 @@ class StudyInput extends DatabaseModel<StudyInput> {
     data['falseNumber'] = this.falseNumber;
     data['netNumber'] = this.netNumber;
     data['date'] = this.date;
+    data['lessonName'] = this.lessonName;
+    data['subjectName'] = this.subjectName;
     return data;
   }
 }

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 abstract class LessonsScreenViewModel extends State<LessonsScreen> {
   List<Lesson> lessonsList = [];
   LessonDatabaseProvider lessonsDB;
-  bool isLoading = true;
 
   @override
   void initState() {
@@ -14,16 +13,13 @@ abstract class LessonsScreenViewModel extends State<LessonsScreen> {
     print("state initialize");
     lessonsDB = LessonDatabaseProvider();
     lessonsDB.open().then((_) {
-      Future.delayed(const Duration(milliseconds: 1000), () {
-        getLessons();
-      });
+      getLessons();
     });
   }
 
   Future<void> getLessons() async {
     await lessonsDB.getList().then((lessonList) {
       setState(() {
-        isLoading = false;
         lessonsList = lessonList;
       });
     });

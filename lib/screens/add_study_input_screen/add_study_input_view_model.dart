@@ -98,7 +98,9 @@ abstract class AddStudyInputScreenViewModel extends State<AddStudyInputScreen> {
             trueNumber: trueNumber,
             falseNumber: falseNumber,
             netNumber: netNumber,
-            date: DateTime.now().millisecondsSinceEpoch);
+            date: DateTime.now().millisecondsSinceEpoch,
+            lessonName: selectedLesson.name,
+            subjectName: selectedSubject.name);
         await studyInputDB.insertItem(studyInputModel).then((isSuccess) {
           if (isSuccess) {
             Navigator.of(ctx).pushNamedAndRemoveUntil(

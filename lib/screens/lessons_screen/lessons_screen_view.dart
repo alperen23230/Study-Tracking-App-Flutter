@@ -7,8 +7,11 @@ class LessonsScreenView extends LessonsScreenViewModel {
   @override
   Widget build(BuildContext context) {
     print("build");
-    return !isLoading
-        ? ListView.builder(
+    return lessonsList.isEmpty
+        ? Center(
+            child: LottieCustomWidget(path: "empty"),
+          )
+        : ListView.builder(
             itemCount: lessonsList.length,
             itemBuilder: (context, index) {
               return Dismissible(
@@ -36,9 +39,6 @@ class LessonsScreenView extends LessonsScreenViewModel {
                 ),
               );
             },
-          )
-        : Center(
-            child: LottieCustomWidget(path: "time"),
           );
   }
 }

@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
   String _studyInputDBPath = "studyInputDB";
   String _studyInputTableName = "studyInputTable";
-  int _version = 1;
+  int _version = 6;
 
   String columnId = "id";
   String columnSubjectId = "subjectId";
@@ -15,6 +15,8 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
   String columnFalseNumber = "falseNumber";
   String columnNetNumber = "netNumber";
   String columnDate = "date";
+  String columnLessonName = "lessonName";
+  String columnSubjectName = "subjectName";
 
   @override
   Future open() async {
@@ -23,6 +25,11 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
       version: _version,
       onCreate: (db, version) {
         createTable(db);
+      },
+      onUpgrade: (db, oldVersion, newVersion) {
+        print(oldVersion);
+        print(newVersion);
+        onUpgradeDB(db, oldVersion, newVersion);
       },
     );
   }
@@ -33,6 +40,15 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
             $columnSubjectId TEXT, $columnLessonId TEXT, $columnQuestionNumber INTEGER, 
             $columnTrueNumber INTEGER, $columnFalseNumber INTEGER, $columnNetNumber DOUBLE, $columnDate INTEGER)''',
     );
+  }
+
+  void onUpgradeDB(Database db, int oldVersion, int newVersion) {
+    if (oldVersion < newVersion) {
+      db.execute(
+          "ALTER TABLE $_studyInputTableName ADD COLUMN $columnLessonName TEXT");
+      db.execute(
+          "ALTER TABLE $_studyInputTableName ADD COLUMN $columnSubjectName TEXT");
+    }
   }
 
   @override

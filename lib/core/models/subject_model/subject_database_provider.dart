@@ -51,7 +51,7 @@ class SubjectDatabaseProvider extends DatabaseProvider<Subject> {
     final subjectMap = await database.query(
       _subjectTableName,
       where: '$columnId = ?',
-      columns: [columnId],
+      columns: [columnId, columnName],
       whereArgs: [id],
     );
 

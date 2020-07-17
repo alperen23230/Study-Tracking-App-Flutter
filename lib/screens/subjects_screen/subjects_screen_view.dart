@@ -1,5 +1,6 @@
 import 'package:StudyTrackingApp/core/models/lesson_model/lesson.dart';
 import 'package:StudyTrackingApp/screens/subjects_screen/subjects_screen_view_model.dart';
+import 'package:StudyTrackingApp/widgets/lottie_custom_widget.dart';
 import 'package:flutter/material.dart';
 
 class SubjectsScreenView extends SubjectsScreenViewModel {
@@ -41,37 +42,41 @@ class SubjectsScreenView extends SubjectsScreenViewModel {
         ),
         backgroundColor: lessonColor,
       ),
-      body: ListView.builder(
-        itemCount: subjectsList.length,
-        itemBuilder: (context, index) {
-          return Dismissible(
-            key: Key(subjectsList[index].id),
-            background: Container(
-              alignment: AlignmentDirectional.centerEnd,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              color: Colors.red,
-              child: Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
+      body: subjectsList.isEmpty
+          ? Center(
+              child: LottieCustomWidget(path: "empty"),
+            )
+          : ListView.builder(
+              itemCount: subjectsList.length,
+              itemBuilder: (context, index) {
+                return Dismissible(
+                  key: Key(subjectsList[index].id),
+                  background: Container(
+                    alignment: AlignmentDirectional.centerEnd,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    color: Colors.red,
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    deleteSubject(subjectsList[index].id).then((isSuccess) {
+                      if (isSuccess) {
+                        setState(() {
+                          subjectsList.remove(subjectsList[index]);
+                        });
+                      }
+                    });
+                  },
+                  child: Card(
+                    child: ListTile(
+                      title: Text(subjectsList[index].name),
+                    ),
+                  ),
+                );
+              },
             ),
-            onDismissed: (direction) {
-              deleteSubject(subjectsList[index].id).then((isSuccess) {
-                if (isSuccess) {
-                  setState(() {
-                    subjectsList.remove(subjectsList[index]);
-                  });
-                }
-              });
-            },
-            child: Card(
-              child: ListTile(
-                title: Text(subjectsList[index].name),
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }

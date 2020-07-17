@@ -43,7 +43,7 @@ class LessonDatabaseProvider extends DatabaseProvider<Lesson> {
     final lessonMap = await database.query(
       _lessonTableName,
       where: '$columnId = ?',
-      columns: [columnId],
+      columns: [columnId, columnName],
       whereArgs: [id],
     );
 
