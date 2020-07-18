@@ -98,7 +98,11 @@ abstract class AddStudyInputScreenViewModel extends State<AddStudyInputScreen> {
             trueNumber: trueNumber,
             falseNumber: falseNumber,
             netNumber: netNumber,
-            date: DateTime.now().millisecondsSinceEpoch,
+            date: DateTime(
+              DateTime.now().year,
+              DateTime.now().month,
+              DateTime.now().day,
+            ).millisecondsSinceEpoch,
             lessonName: selectedLesson.name,
             subjectName: selectedSubject.name);
         await studyInputDB.insertItem(studyInputModel).then((isSuccess) {

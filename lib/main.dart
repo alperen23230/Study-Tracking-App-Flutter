@@ -5,21 +5,9 @@ import 'package:StudyTrackingApp/screens/subjects_screen/subjects_screen.dart';
 import 'package:StudyTrackingApp/screens/tabs_screen/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'core/helper/custom_color.dart';
-//TO-DO use library on sqlite debug!!!
-import 'package:appspector/appspector.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runAppSpector();
   runApp(MyApp());
-}
-
-void runAppSpector() {
-  final config = Config()
-    ..androidApiKey =
-        "android_MmRiNDM2NzItZDcyNi00M2IyLTliYzItZGYzYjkzMGMyZmU2";
-
-  AppSpectorPlugin.run(config);
 }
 
 class MyApp extends StatelessWidget {

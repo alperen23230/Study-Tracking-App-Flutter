@@ -1,4 +1,5 @@
 import 'package:StudyTrackingApp/core/database/database_provider.dart';
+import 'package:StudyTrackingApp/core/models/lesson_model/lesson.dart';
 import 'package:StudyTrackingApp/core/models/study_input_model/study_input.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -54,6 +55,49 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
   @override
   Future<List<StudyInput>> getList() async {
     List<Map> studyInputMaps = await database.query(_studyInputTableName);
+
+    return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
+  }
+
+  Future<List<StudyInput>> getListByDate(int timestamp) async {
+    final studyInputMaps = await database.query(
+      _studyInputTableName,
+      where: '$columnDate = ?',
+      whereArgs: [timestamp],
+    );
+
+    return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
+  }
+
+  Future<List<StudyInput>> getListByDateAndLesson(
+      int timestamp, String lessonId) async {
+    final studyInputMaps = await database.query(
+      _studyInputTableName,
+      where: '$columnDate = ? and $columnLessonId = ?',
+      whereArgs: [timestamp, lessonId],
+    );
+
+    return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
+  }
+
+  Future<List<StudyInput>> getListByDateRangeAndLesson(
+      int startTimeStamp, int endTimeStamp, String lessonId) async {
+    final studyInputMaps = await database.query(
+      _studyInputTableName,
+      where: '$columnDate >= ? and $columnDate <= ? and $columnLessonId = ?',
+      whereArgs: [startTimeStamp, endTimeStamp, lessonId],
+    );
+
+    return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
+  }
+
+  Future<List<StudyInput>> getListByDateRange(
+      int startTimeStamp, int endTimeStamp) async {
+    final studyInputMaps = await database.query(
+      _studyInputTableName,
+      where: '$columnDate >= ? and $columnDate <= ?',
+      whereArgs: [startTimeStamp, endTimeStamp],
+    );
 
     return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
   }
