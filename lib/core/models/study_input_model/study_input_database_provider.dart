@@ -1,4 +1,5 @@
 import 'package:StudyTrackingApp/core/database/database_provider.dart';
+import 'package:StudyTrackingApp/core/models/chart_model/input_chart_model.dart';
 import 'package:StudyTrackingApp/core/models/lesson_model/lesson.dart';
 import 'package:StudyTrackingApp/core/models/study_input_model/study_input.dart';
 import 'package:sqflite/sqflite.dart';
@@ -57,6 +58,29 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
     List<Map> studyInputMaps = await database.query(_studyInputTableName);
 
     return studyInputMaps.map((e) => StudyInput.fromJson(e)).toList();
+  }
+
+  Future<List<InputChartModel>> getSumListByDate(int timestamp) async {
+    final inputMaps = await database.rawQuery("""SELECT
+          $columnLessonName,
+          SUM($columnQuestionNumber) as TotalQuestion, 
+          SUM($columnTrueNumber) as TotalTrue,
+          SUM($columnFalseNumber) as TotalFalse, 
+          SUM($columnNetNumber) as TotalNet
+          FROM $_studyInputTableName WHERE $columnDate = $timestamp GROUP BY $columnLessonName""");
+    return inputMaps.map((e) => InputChartModel.fromJson(e)).toList();
+  }
+
+  Future<List<InputChartModel>> getSumListByDateRange(
+      int startTimeStamp, int endTimeStamp) async {
+    final inputMaps = await database.rawQuery("""SELECT
+          $columnLessonName,
+          SUM($columnQuestionNumber) as TotalQuestion, 
+          SUM($columnTrueNumber) as TotalTrue,
+          SUM($columnFalseNumber) as TotalFalse, 
+          SUM($columnNetNumber) as TotalNet
+          FROM $_studyInputTableName WHERE $columnDate >= $startTimeStamp and $columnDate <= $endTimeStamp GROUP BY $columnLessonName""");
+    return inputMaps.map((e) => InputChartModel.fromJson(e)).toList();
   }
 
   Future<List<StudyInput>> getListByDate(int timestamp) async {
