@@ -54,6 +54,7 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         onTap: _selectPage,
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white,
@@ -61,14 +62,17 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: _selectedPageIndex,
         items: [
           BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.calendar_today),
             title: Text("Çalışmalar"),
           ),
           BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.library_books),
             title: Text("Dersler"),
           ),
           BottomNavigationBarItem(
+            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(Icons.insert_chart),
             title: Text("İstatistikler"),
           ),
