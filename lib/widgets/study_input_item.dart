@@ -57,6 +57,24 @@ class StudyInputItem extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
               ),
+              SizedBox(
+                width: 15,
+              ),
+              FlatButton(
+                child: Text(
+                  "Düzenle",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    '/add-study-input',
+                    arguments: {
+                      'input': studyInputList[index],
+                      'forEdit': true
+                    },
+                  );
+                },
+              )
             ],
           ),
         )

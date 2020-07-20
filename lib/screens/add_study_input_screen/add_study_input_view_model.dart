@@ -11,6 +11,8 @@ import 'package:uuid/uuid.dart';
 abstract class AddStudyInputScreenViewModel extends State<AddStudyInputScreen> {
   Lesson selectedLesson;
   Subject selectedSubject;
+  StudyInput currentStudyInput;
+  bool isEditMode;
 
   TextEditingController questionNumberController =
       TextEditingController(text: "");
@@ -105,16 +107,31 @@ abstract class AddStudyInputScreenViewModel extends State<AddStudyInputScreen> {
             ).millisecondsSinceEpoch,
             lessonName: selectedLesson.name,
             subjectName: selectedSubject.name);
-        await studyInputDB.insertItem(studyInputModel).then((isSuccess) {
-          if (isSuccess) {
-            Navigator.of(ctx).pushNamedAndRemoveUntil(
-              '/tabs-screen',
-              (route) => false,
-            );
-          } else {
-            print("error");
-          }
-        });
+        if (isEditMode) {
+          await studyInputDB
+              .updateItem(currentStudyInput.id, studyInputModel)
+              .then((isSuccess) {
+            if (isSuccess) {
+              Navigator.of(ctx).pushNamedAndRemoveUntil(
+                '/tabs-screen',
+                (route) => false,
+              );
+            } else {
+              print("error");
+            }
+          });
+        } else {
+          await studyInputDB.insertItem(studyInputModel).then((isSuccess) {
+            if (isSuccess) {
+              Navigator.of(ctx).pushNamedAndRemoveUntil(
+                '/tabs-screen',
+                (route) => false,
+              );
+            } else {
+              print("error");
+            }
+          });
+        }
       } else {
         scaffoldKey.currentState.showSnackBar(
           SnackBar(

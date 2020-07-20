@@ -7,6 +7,10 @@ class AddStudyInputScreenView extends AddStudyInputScreenViewModel {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    currentStudyInput = routeArgs['input'];
+    isEditMode = routeArgs['forEdit'];
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -40,7 +44,7 @@ class AddStudyInputScreenView extends AddStudyInputScreenViewModel {
                     width: screenSize.width * 0.5,
                     child: RaisedButton(
                       child: Text(
-                        "Ekle",
+                        isEditMode ? "Düzenle" : "Ekle",
                         style: TextStyle(color: Colors.white),
                       ),
                       color: Theme.of(context).primaryColor,

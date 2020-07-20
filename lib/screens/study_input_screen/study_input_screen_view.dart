@@ -27,27 +27,14 @@ class StudyInputScreenView extends StudyInputScreenViewModel {
                       color: Colors.white,
                     ),
                   ),
-                  secondaryBackground: Container(
-                    alignment: AlignmentDirectional.centerEnd,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    color: Colors.red,
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                    ),
-                  ),
                   onDismissed: (direction) {
-                    if (direction == DismissDirection.startToEnd) {
-                      print("edit");
-                    } else {
-                      studyInputDB
-                          .removeItem(studyInputList[index].id)
-                          .then((isSuccess) {
-                        setState(() {
-                          studyInputList.remove(studyInputList[index]);
-                        });
+                    studyInputDB
+                        .removeItem(studyInputList[index].id)
+                        .then((isSuccess) {
+                      setState(() {
+                        studyInputList.remove(studyInputList[index]);
                       });
-                    }
+                    });
                   },
                   child: StudyInputItem(
                       studyInputList: studyInputList, index: index),
