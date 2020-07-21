@@ -9,8 +9,10 @@ class AddStudyInputScreenView extends AddStudyInputScreenViewModel {
     final screenSize = MediaQuery.of(context).size;
     final routeArgs =
         ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-    currentStudyInput = routeArgs['input'];
     isEditMode = routeArgs['forEdit'];
+    if (isEditMode) {
+      currentStudyInput = routeArgs['input'];
+    }
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(

@@ -41,7 +41,11 @@ abstract class AddStudyInputScreenViewModel extends State<AddStudyInputScreen> {
     lessonsDB.open().then((_) {
       getLessons().then((_) {
         selectedLesson = lessonsList.first;
-        subjectsDB.open();
+        subjectsDB.open().then((_) {
+          getSubjects().then((_) {
+            selectedSubject = subjectsList.first;
+          });
+        });
       });
     });
   }

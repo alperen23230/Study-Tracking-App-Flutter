@@ -45,7 +45,12 @@ class _TabsScreenState extends State<TabsScreen> {
                   Navigator.of(context).pushNamed('/add-lesson');
                 } else if (_pages[_selectedPageIndex]['title'] ==
                     "Öğrenci Çalışmaları") {
-                  Navigator.of(context).pushNamed('/add-study-input');
+                  Navigator.of(context).pushNamed(
+                    '/add-study-input',
+                    arguments: {
+                      'forEdit': false,
+                    },
+                  );
                 }
               },
             ),

@@ -1,5 +1,7 @@
 import 'package:StudyTrackingApp/core/models/study_input_model/study_input.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart' as intl_local_date_data;
 
 class StudyInputItem extends StatelessWidget {
   const StudyInputItem({
@@ -13,12 +15,26 @@ class StudyInputItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    intl_local_date_data.initializeDateFormatting();
+    final format = DateFormat.yMMMd('tr-TR');
     return ExpansionTile(
-      title: Text(
-        "${studyInputList[index].lessonName} - ${studyInputList[index].subjectName}",
-        style: TextStyle(
-          fontSize: 20,
-        ),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "${studyInputList[index].lessonName} - ${studyInputList[index].subjectName} ",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            "(${format.format(DateTime.fromMillisecondsSinceEpoch(studyInputList[index].date))})",
+            style: TextStyle(fontSize: 14, color: Colors.grey),
+          )
+        ],
       ),
       children: <Widget>[
         Container(

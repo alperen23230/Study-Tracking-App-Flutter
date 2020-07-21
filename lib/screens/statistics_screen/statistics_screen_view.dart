@@ -44,7 +44,7 @@ class StatisticsScreenView extends StatisticsScreenViewModel {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         chartList.isEmpty
@@ -107,10 +107,12 @@ class StatisticsScreenView extends StatisticsScreenViewModel {
   Container buildPieChart() {
     return Container(
       height: 200,
+      padding: EdgeInsets.all(7),
       child: Card(
         elevation: 6,
         child: new charts.PieChart(
           pieChartList,
+          animationDuration: Duration(milliseconds: 500),
           animate: true,
           defaultRenderer: new charts.ArcRendererConfig(
             arcRendererDecorators: [
@@ -126,6 +128,7 @@ class StatisticsScreenView extends StatisticsScreenViewModel {
   Container buildLegendChart() {
     return Container(
       height: 200,
+      padding: EdgeInsets.all(7),
       child: Card(
         elevation: 6,
         child: charts.BarChart(

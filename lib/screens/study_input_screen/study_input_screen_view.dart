@@ -19,11 +19,11 @@ class StudyInputScreenView extends StudyInputScreenViewModel {
                 return Dismissible(
                   key: Key(studyInputList[index].id),
                   background: Container(
-                    alignment: AlignmentDirectional.centerStart,
+                    alignment: AlignmentDirectional.centerEnd,
                     padding: EdgeInsets.symmetric(horizontal: 20),
-                    color: Colors.amber,
+                    color: Colors.red,
                     child: Icon(
-                      Icons.edit,
+                      Icons.delete,
                       color: Colors.white,
                     ),
                   ),
