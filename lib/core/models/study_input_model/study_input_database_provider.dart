@@ -40,7 +40,8 @@ class StudyInputDatabaseProvider extends DatabaseProvider<StudyInput> {
     await db.execute(
       '''CREATE TABLE $_studyInputTableName ($columnId TEXT PRIMARY KEY, 
             $columnSubjectId TEXT, $columnLessonId TEXT, $columnQuestionNumber INTEGER, 
-            $columnTrueNumber INTEGER, $columnFalseNumber INTEGER, $columnNetNumber DOUBLE, $columnDate INTEGER)''',
+            $columnTrueNumber INTEGER, $columnFalseNumber INTEGER, $columnNetNumber DOUBLE, $columnDate INTEGER,  
+            $columnLessonName TEXT,  $columnSubjectName TEXT)''',
     );
   }
 
